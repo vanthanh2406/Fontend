@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS</title>
+    <!-- Nhúng thư viện -->
+    <script src="./libs/angular.min.js"></script>
+</head>
+<!-- Để khởi tạo 1 chương trình đầu tiên chúng ta cần định nghĩa vùng sử dụng angularjs -->
+<!-- ng - app : dùng để dịnh nghĩa vùng sử dụng angularjs -->
+
+<body ng-app="MyNameisThanh">
+    <div ng-controller="demoController">
+        <h1>{{ xinchao }}</h1>
+    </div>
+
+    <div ng-controller="demoController1">
+        <h1>{{ten}}</h1>
+        <h1>{{namSinh}}</h1>
+        <h1 ng-bind="Ngang"></h1>
+
+        <h1>Danh sách</h1>
+        <table border="1">
+            <tr>
+                <td>Tên</td>
+                <td>Năm Sinh</td>
+                <td>Chuyên Ngành</td>
+            </tr>
+            <tr>
+                <td>{{ student[0].ten}}</td>
+                <td>{{ student[0].namsinh}}</td>
+                <td>{{ student[0].chuyennganh}}</td>
+            </tr>
+
+        </table>
+
+
+        <h1>Danh sách 2</h1>
+        <table border="1">
+            <tr>
+                <td>Tên</td>
+                <td>Năm Sinh</td>
+                <td>Chuyên Ngành</td>
+            </tr>
+            <tr ng-repeat="item in student">
+                <td>{{ item.ten}}</td>
+                <td>{{ item.namsinh }}</td>
+                <td>{{ item.chuyennganh }}</td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+<!-- cách nhúng trực tiếp -->
+<script>
+    //khời tạo  module
+    //Set angular cho vùng NYC
+    let myApp = angular.module("MyNameisThanh", []); //2 tham số(Tên vùng ng-app, thành phần phụ thuộc)
+
+    //khởi tạo controller
+    myApp.controller("demoController", myFunction); // 2 tham số: tên controller,
+    function myFunction($scope) {
+        // tham số $scope luôn luôn phải có để render dữ liệu và view
+
+        //khai báo biến 
+        $scope.xinchao = "Hello cưng";
+        console.log($scope.xinchao);
+    }
+
+    //1
+    myApp.controller("demoController1", myFunction1); // 2 tham số: tên controller,
+    function myFunction1($scope) {
+        $scope.ten = "Nguyễn Văn Thành";
+        $scope.namSinh = "2003";
+        $scope.Ngang = "PTPM";
+
+        //Khai báo mảng
+        $scope.student = [
+            {
+                ten: "Thanh Van Nguyen",
+                namsinh: 2003,
+                chuyennganh: "CNTT"
+            }
+        ];
+    }
+
+
+
+
+</script>
+<!-- Kết nối js -->
+<script src="/angularjs/js/buoi5.js"></script>
+
+</html>
